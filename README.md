@@ -1,8 +1,10 @@
-# dictionary-cli
+# dictionary-cli :octocat: :computer:
 ***
 It is a simple and yet another CLI application that finds the definition of words on the command-line itself. Ain't that cool? This is my first try on a CLI application based on python's Click library and Ofxord Dictionary's API.
 
-## Installing in you system : 
+
+
+## Installing in your system : 
 ---
 
 Clone the repo: 
