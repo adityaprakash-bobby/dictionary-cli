@@ -16,7 +16,7 @@ cd dictionary-cli
 ```
 **Setup your machine:**
 ```bash
-pip install --editable .
+pip install --editable . --user
 ```
 **Run the application:**
 ```bash
