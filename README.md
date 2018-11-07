@@ -2,7 +2,10 @@
 ***
 It is a simple and yet another CLI application that finds the definition of words on the command-line itself. Ain't that cool? This is my first try on a CLI application based on python's Click library and Ofxord Dictionary's API.
 
+
 ![help text](https://raw.githubusercontent.com/adityaprakash-bobby/dictionary-cli/master/images/20181012_014655.png "start up")
+
+
 ![example](https://raw.githubusercontent.com/adityaprakash-bobby/dictionary-cli/master/images/20181012_014756.png "example")
 
 
