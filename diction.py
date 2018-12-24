@@ -17,15 +17,17 @@ def define (word_id):
     language = 'en'
 
     url = 'https://od-api.oxforddictionaries.com:443/api/v1/entries/' + language + '/' + word_id.lower()
-    r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key})
-
+    r = requests.get(url, headers = {'app_id': app_id, 'app_key': app_key}) 
     data = json.loads(r.content)
-    definition = data['results'][0]['lexicalEntries'][0]['entries'][0]['senses'][0]['definitions'][0]
+    definitions = []
+    lexicalCategory = []
+    results = data['results'][0]
+    lexicalEntries = results['lexicalEntries']
+    for entry in lexicalEntries :
+        definitions.append(entry['entries'][0]['senses'][0]['definitions'][0])
+        lexicalCategory.append(entry['lexicalCategory'])
+    return lexicalCategory, definitions
 
-    return definition
-
-
-# The application section
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.option('-w', '--word',
@@ -38,8 +40,12 @@ def cli(word):
     This app lets you find meaning of words in the CLI itself. How cool!
     """
     try :
-        click.echo(click.style(word , fg='red', bold=True))
-        click.echo(click.style("\t" + str(define(word)), fg = 'green'))
+        lexCat, definitions = define(word)
+        i = 0 
+        for definition in definitions:
+            click.echo(click.style(word + "(" + str(lexCat[i]) + ")", fg='red', bold=True))
+            click.echo(click.style("\t" + str(definition) + "\n", fg = 'green'))
+            i += 1
     except ValueError :
         click.echo('Error : Not a valid word!')
     except TypeError :
